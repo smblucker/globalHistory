@@ -49,4 +49,14 @@ namespace csci5814
         int mask = (1 << getSize()) - 1;
         value = value & mask;
     }
+
+    void BranchHistoryRegister::updateBranchHistoryRegister(std::string takenBranch)
+    {
+
+    }
+
+    void BranchHistoryRegister::updateBranchHistoryRegister2(bool takenPath)
+    {
+        
+    }
 }
