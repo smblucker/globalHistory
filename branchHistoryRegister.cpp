@@ -1,4 +1,10 @@
 #include "branchHistoryRegister.h"
+#include <iostream>
+#include <iomanip>
+#include <istream>
+#include <fstream>
+#include <stdio.h>
+#include <stdlib.h>
 
 //Sean Blucker
 
@@ -6,60 +12,40 @@ using namespace std;
 
 namespace csci5814
 {
-    branchHistoryRegister::branchHistoryRegister()
+    BranchHistoryRegister::branchHistoryRegister()
     {
         value = 0;
         size = 3;
     }
 
-    int branchHistoryRegister::getValue()
+    int BranchHistoryRegister::getValue()
     {
         return value;
     }
 
-    int branchHistoryRegister::getSize()
+    int BranchHistoryRegister::getSize()
     {
         return size;
     }
 
-    void branchHistoryRegister::setValue(int setValue)
+    void BranchHistoryRegister::setValue(int setValue)
     {
         int mask = (1 << getSize()) - 1;
         value = setValue & mask;
     }
 
-    void branchHistoryRegister::incrementValue()
-    {
-        value += 1;
-    }
-
-    void branchHistoryRegister::decrementValue()
-    {
-        value -= 1;
-    }
-
-    void branchHistoryRegister::shiftValueLeft()
+    void BranchHistoryRegister::updateTaken()
     {
         value <<= 1;
-    }
-
-    void branchHistoryRegister::shiftValueRight()
-    {
-        value >>= 1;
-    }
-
-    void branchHistoryRegister::updateTaken()
-    {
-        shiftValueLeft();
-        incrementValue();
+        value += 1;
         int mask = (1 << getSize()) - 1;
         value = value & mask;
     }
 
-    void branchHistoryRegister::updateNotTaken()
+    void BranchHistoryRegister::updateNotTaken()
     {
-        shiftValueRight();
-        decrementValue();
+        value >>= 1;
+        value -= 1;
         int mask = (1 << getSize()) - 1;
         value = value & mask;
     }

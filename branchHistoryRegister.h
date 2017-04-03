@@ -6,7 +6,7 @@
 
 namespace csci5814
 {
-    class branchHistoryRegister
+    class BranchHistoryRegister
     {
     private:
         int value;
@@ -15,10 +15,6 @@ namespace csci5814
         int getValue();
         int getSize();
         void setValue(int setValue);
-        void incrementValue();
-        void decrementValue();
-        void shiftValueLeft();
-        void shiftValueRight();
         void updateTaken();
         void updateNotTaken();
     };

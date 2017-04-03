@@ -18,12 +18,14 @@ int main()
 
 	Stats smith_stats;
 	SmithCounter smith_array[128];
+	BranchHistoryRegister bhr;
 
 	string branch;
 	string pathIdentifier;
 	int instruction;
 	const int modValue = 128;
 	bool pathPrediction;
+	//bool historicPrediction;
 	bool takenPath;
 
 	ifstream input("branch_trace.dat");
@@ -39,6 +41,7 @@ int main()
 	   getline(input,pathIdentifier,'\n');
 	   instruction = atoi(branch.c_str());
 	   pathPrediction = smith_array[(instruction/4) % modValue].getPrediction();
+	   //historicPrediction = bhr.getValue();
 
 	   if (pathIdentifier.find('T') != std::string::npos)
 	   {
