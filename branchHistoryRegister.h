@@ -3,6 +3,7 @@
 
 //Sean Blucker
 
+#include <string>
 
 namespace csci5814
 {
@@ -18,6 +19,8 @@ namespace csci5814
         void setValue(int setValue);
         void updateTaken();
         void updateNotTaken();
+        void updateBranchHistoryRegister(std::string takenBranch);
+        void updateBranchHistoryRegister2(bool takenPath);
     };
 }
 
