@@ -23,9 +23,7 @@ int main()
 	string branch;
 	string pathIdentifier;
 	int instruction;
-	const int modValue = 128;
 	bool pathPrediction;
-	//bool historicPrediction;
 	bool takenPath;
 
 	ifstream input("branch_trace.dat");
@@ -40,8 +38,8 @@ int main()
 
 	   getline(input,pathIdentifier,'\n');
 	   instruction = atoi(branch.c_str());
-	   pathPrediction = smith_array[(instruction/4) % modValue].getPrediction();
-	   //historicPrediction = bhr.getValue();
+	   int index = (((instruction/4) << 3) | (bhr.getValue() & 0x02)) & 0x1F;
+	   pathPrediction = smith_array[index].getPrediction();
 
 	   if (pathIdentifier.find('T') != std::string::npos)
 	   {
@@ -56,22 +54,26 @@ int main()
 
 	   if (pathPrediction && takenPath)
 	   {
-		   smith_array[(instruction/4) % modValue].updatePrediction(pathIdentifier);
+		   smith_array[index].updatePrediction(pathIdentifier);
+		   bhr.updateBranchHistoryRegister(pathIdentifier);
 		   smith_stats.incrementCorrectlyPredictedTakenBranches();
 
 	   }
 	   else if (pathPrediction && !takenPath)
 	   {
-		   smith_array[(instruction/4) % modValue].updatePrediction(pathIdentifier);
+		   smith_array[index].updatePrediction(pathIdentifier);
+		   bhr.updateBranchHistoryRegister(pathIdentifier);
 	   }
 	   else if (!pathPrediction && !takenPath)
 	   {
-		   smith_array[(instruction/4) % modValue].updatePrediction(pathIdentifier);
+		   smith_array[index].updatePrediction(pathIdentifier);
+		   bhr.updateBranchHistoryRegister(pathIdentifier);
 		   smith_stats.incrementCorrectlyPredictedNotTakenBranches();
 	   }
 	   else if (!pathPrediction && takenPath)
 	   {
-		   smith_array[(instruction/4) % modValue].updatePrediction(pathIdentifier);
+		   smith_array[index].updatePrediction(pathIdentifier);
+		   bhr.updateBranchHistoryRegister(pathIdentifier);
 	   }
 
 		smith_stats.incrementBranches();

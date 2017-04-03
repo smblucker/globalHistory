@@ -15,7 +15,8 @@ namespace csci5814
     BranchHistoryRegister::BranchHistoryRegister()
     {
         value = 0;
-        size = 3;
+        size = 7;
+        mask = size;
     }
 
     int BranchHistoryRegister::getValue()
@@ -30,7 +31,6 @@ namespace csci5814
 
     void BranchHistoryRegister::setValue(int setValue)
     {
-        int mask = (1 << getSize()) - 1;
         value = setValue & mask;
     }
 
@@ -38,25 +38,20 @@ namespace csci5814
     {
         value <<= 1;
         value += 1;
-        int mask = (1 << getSize()) - 1;
         value = value & mask;
     }
 
     void BranchHistoryRegister::updateNotTaken()
     {
-        value <<= 0;
-        value -= 1;
-        int mask = (1 << getSize()) - 1;
+        value <<= 1;
         value = value & mask;
     }
 
     void BranchHistoryRegister::updateBranchHistoryRegister(std::string takenBranch)
     {
-
-    }
-
-    void BranchHistoryRegister::updateBranchHistoryRegister2(bool takenPath)
-    {
-        
+        if(takenBranch == "T")
+            updateTaken();
+        else
+            updateNotTaken();
     }
 }

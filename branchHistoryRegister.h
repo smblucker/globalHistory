@@ -12,6 +12,7 @@ namespace csci5814
     private:
         int value;
         int size;
+        int mask;
     public:
         BranchHistoryRegister();
         int getValue();
@@ -20,7 +21,6 @@ namespace csci5814
         void updateTaken();
         void updateNotTaken();
         void updateBranchHistoryRegister(std::string takenBranch);
-        void updateBranchHistoryRegister2(bool takenPath);
     };
 }
 
