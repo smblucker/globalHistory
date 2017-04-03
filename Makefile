@@ -16,4 +16,4 @@ globalHistory.o: globalHistory.cpp branchHistoryRegister.h stats.h smithCounter.
 	g++ $(CFLAGS) -c globalHistory.cpp -o globalHistory.o
 
 clean:
-	rm -f smith_counter *.o
+	rm -f global_history *.o
