@@ -1,5 +1,6 @@
 #include "smithCounter.h"
 #include "stats.h"
+#include "branchHistoryRegister.h"
 #include <iostream>
 #include <iomanip>
 #include <istream>

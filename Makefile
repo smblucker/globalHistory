@@ -1,7 +1,10 @@
-CFLAGS=-Wall -g
+CFLAGS=-Wall -ggdb
 
-smith_counter: smith.o stats.o smithCounter.o
-	g++ -o smith_counter $(CFLAGS) smith.o stats.o smithCounter.o
+global_history: globalHistory.o stats.o smithCounter.o branchHistoryRegister.o
+	g++ -o global_history $(CFLAGS) globalHistory.o stats.o smithCounter.o branchHistoryRegister.o
+
+branchHistoryRegister.o: branchHistoryRegister.cpp branchHistoryRegister.h
+	g++ $(CFLAGS) -c branchHistoryRegister.cpp -o branchHistoryRegister.o
 
 smithCounter.o: smithCounter.cpp smithCounter.h
 	g++ $(CFLAGS) -c smithCounter.cpp -o smithCounter.o
@@ -9,8 +12,8 @@ smithCounter.o: smithCounter.cpp smithCounter.h
 stats.o: stats.cpp stats.h
 	g++ $(CFLAGS) -c stats.cpp -o stats.o
 
-smith.o: smith.cpp stats.h smithCounter.h
-	g++ $(CFLAGS) -c smith.cpp -o smith.o
+globalHistory.o: globalHistory.cpp branchHistoryRegister.h stats.h smithCounter.h
+	g++ $(CFLAGS) -c globalHistory.cpp -o globalHistory.o
 
 clean:
 	rm -f smith_counter *.o
