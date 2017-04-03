@@ -12,6 +12,7 @@ namespace csci5814
         int value;
         int size;
     public:
+        BranchHistoryRegister();
         int getValue();
         int getSize();
         void setValue(int setValue);

@@ -12,7 +12,7 @@ using namespace std;
 
 namespace csci5814
 {
-    BranchHistoryRegister::branchHistoryRegister()
+    BranchHistoryRegister::BranchHistoryRegister()
     {
         value = 0;
         size = 3;
@@ -44,7 +44,7 @@ namespace csci5814
 
     void BranchHistoryRegister::updateNotTaken()
     {
-        value >>= 1;
+        value <<= 0;
         value -= 1;
         int mask = (1 << getSize()) - 1;
         value = value & mask;
