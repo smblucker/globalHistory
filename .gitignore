@@ -1,0 +1,5 @@
+#Ignore binaries and object files
+
+*.h.gch
+*.o
+global_history
