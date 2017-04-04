@@ -15,7 +15,7 @@ namespace csci5814
     BranchHistoryRegister::BranchHistoryRegister()
     {
         value = 0;
-        size = 7;
+        size = 3;
         mask = size;
     }
 
