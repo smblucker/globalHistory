@@ -38,7 +38,7 @@ int main()
 
 	   getline(input,pathIdentifier,'\n');
 	   instruction = atoi(branch.c_str());
-	   int index = (((instruction/4) << 3) | (bhr.getValue() & 0x02)) & 0x1F;
+	   int index = (((instruction/4) << 3) | (bhr.getValue() & 0x2)) & 0x1F;
 	   pathPrediction = smith_array[index].getPrediction();
 
 	   if (pathIdentifier.find('T') != std::string::npos)
